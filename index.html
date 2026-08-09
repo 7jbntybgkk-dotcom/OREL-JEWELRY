@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="OREL JEWELRY — תכשיטים בקו שחור-לבן יוקרתי.">
+<title>OREL JEWELRY | תכשיטים יוקרתיים</title>
+<style>
+:root{--black:#050505;--ink:#111;--white:#fff;--soft:#f5f5f3;--line:#dededb;--muted:#707070}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--white);color:var(--ink);font-family:Arial,"Helvetica Neue",sans-serif}
+button{font:inherit}.top{background:#050505;color:#fff;padding:9px 5%;font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.top a{color:#fff;text-decoration:none}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #eee}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px}.brand{text-align:center;letter-spacing:7px;font-family:Georgia,serif;font-size:30px}.brand small{display:block;font-family:Arial;letter-spacing:5px;font-size:9px;margin-top:2px}.navlinks{display:flex;gap:24px}.navlinks a{color:#111;text-decoration:none;font-size:14px}.cartbtn{border:1px solid #111;background:#111;color:#fff;padding:10px 16px;border-radius:0;cursor:pointer}
+.hero{background:#050505;color:#fff;padding:72px 6%;text-align:center}.hero h1{font:400 clamp(42px,8vw,88px)/1 Georgia,serif;letter-spacing:8px;margin:0 0 15px}.hero p{margin:0;color:#cfcfcf;letter-spacing:2px}.hero .line{width:90px;height:1px;background:#fff;margin:25px auto}
+.wrap{max-width:1200px;margin:auto;padding:55px 24px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}.section-head h2{font:400 34px Georgia,serif;margin:0}.section-head p{color:var(--muted);margin:0}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}.card{border:1px solid var(--line);background:#fff;position:relative;overflow:hidden}.photo{background:#111;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.card:hover .photo img{transform:scale(1.025)}.tag{position:absolute;top:14px;right:14px;background:#fff;color:#111;padding:7px 11px;font-size:11px;letter-spacing:1px}.info{padding:22px}.info h3{margin:0 0 8px;font:400 24px Georgia,serif}.desc{color:#555;line-height:1.7;margin:0 0 15px}.price{font-size:20px;font-weight:700;margin-bottom:17px}.actions{display:flex;gap:10px}.primary,.secondary{flex:1;padding:13px 10px;border:1px solid #111;cursor:pointer;text-align:center;text-decoration:none}.primary{background:#111;color:#fff}.secondary{background:#fff;color:#111}
+.features{background:#050505;color:#fff;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:45px}.feature{padding:28px;text-align:center;border-left:1px solid #333}.feature:last-child{border-left:0}.feature b{display:block;margin-bottom:8px}.feature span{color:#bbb;font-size:13px}
+footer{background:#fff;border-top:1px solid #ddd;padding:35px 6%;text-align:center;color:#666}.footerbrand{font:400 28px Georgia,serif;color:#111;letter-spacing:6px;margin-bottom:8px}.wa{position:fixed;left:18px;bottom:18px;background:#111;color:#fff;text-decoration:none;padding:13px 17px;border-radius:30px;box-shadow:0 10px 30px #0002;z-index:30}
+.drawer{position:fixed;inset:0;background:#0008;display:none;z-index:50}.drawer.open{display:block}.panel{position:absolute;right:0;top:0;height:100%;width:min(430px,94vw);background:#fff;padding:25px;overflow:auto}.close{float:left;border:0;background:none;font-size:25px;cursor:pointer}.panel h2{font:400 28px Georgia,serif}.cartitem{border-bottom:1px solid #ddd;padding:14px 0;display:flex;justify-content:space-between;gap:15px}.cartitem button{border:0;background:none;text-decoration:underline;cursor:pointer}.total{font-size:20px;font-weight:700;padding:20px 0}.checkout{width:100%;padding:15px;background:#111;color:#fff;border:0;cursor:pointer;font-weight:700}
+@media(max-width:700px){.top{justify-content:center}.nav{padding:13px 14px}.navlinks{display:none}.brand{font-size:25px}.hero{padding:55px 18px}.wrap{padding:38px 15px}.products{grid-template-columns:1fr}.features{grid-template-columns:1fr}.feature{border-left:0;border-bottom:1px solid #333}.section-head{display:block}.section-head p{margin-top:7px}.wa{left:12px;bottom:12px}}
+
+.gallery{position:relative}
+.gallery-img{display:none!important;width:100%;height:100%;object-fit:cover}
+.gallery-img.active{display:block!important}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:1px solid rgba(255,255,255,.7);background:rgba(0,0,0,.58);color:#fff;border-radius:50%;font-size:30px;line-height:30px;cursor:pointer;opacity:0;transition:.25s;z-index:3}
+.gallery:hover .gallery-arrow{opacity:1}
+.gallery-arrow.prev{left:14px}.gallery-arrow.next{right:14px}
+.dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:4}
+.dot{width:8px;height:8px;padding:0;border:1px solid #fff;background:rgba(255,255,255,.45);border-radius:50%;cursor:pointer}
+.dot.active{background:#fff}
+@media(max-width:700px){.gallery-arrow{opacity:1;width:36px;height:36px;font-size:27px}.gallery-arrow.prev{left:9px}.gallery-arrow.next{right:9px}}
+
+/* Luxury motion layer */
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-35%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.09) 48%,rgba(255,255,255,.02) 52%,transparent 65%);transform:translateX(-70%) rotate(8deg);animation:heroShine 8s ease-in-out infinite;pointer-events:none}
+.hero h1,.hero p,.hero .line{position:relative;animation:luxuryReveal 1.1s cubic-bezier(.2,.8,.2,1) both}
+.hero p{animation-delay:.18s}.hero .line{animation-delay:.08s}
+.card{transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s ease,border-color .4s ease;animation:cardReveal .8s cubic-bezier(.2,.8,.2,1) both}
+.card:nth-child(2){animation-delay:.12s}
+.card:hover{transform:translateY(-9px);box-shadow:0 24px 55px rgba(0,0,0,.12);border-color:#aaa}
+.photo{position:relative}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.13) 48%,transparent 60%);transform:translateX(-120%);transition:none;pointer-events:none}
+.card:hover .photo:after{animation:productShine 1.15s ease forwards}
+.info h3{transition:letter-spacing .35s ease}
+.card:hover .info h3{letter-spacing:.8px}
+.primary,.secondary,.cartbtn{transition:transform .25s ease,background .3s ease,color .3s ease,box-shadow .3s ease}
+.primary:hover,.cartbtn:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(0,0,0,.18)}
+.secondary:hover{transform:translateY(-2px);background:#111;color:#fff}
+.gallery-img{transition:opacity .35s ease,transform .65s cubic-bezier(.2,.8,.2,1)}
+.gallery-img.active{animation:galleryFade .55s ease both}
+.gallery-arrow{transition:opacity .25s ease,transform .25s ease,background .25s ease}
+.gallery-arrow:hover{background:#fff;color:#111;transform:translateY(-50%) scale(1.08)}
+.dot{transition:transform .25s ease,background .25s ease}
+.dot.active{transform:scale(1.25)}
+.feature{transition:background .4s ease,transform .35s ease}
+.feature:hover{background:#101010;transform:translateY(-3px)}
+.wa{animation:waFloat 3s ease-in-out infinite}
+.drawer{backdrop-filter:blur(4px)}
+.panel{animation:panelIn .42s cubic-bezier(.2,.8,.2,1) both}
+.brand{transition:letter-spacing .4s ease}
+.brand:hover{letter-spacing:10px}
+@keyframes luxuryReveal{from{opacity:0;transform:translateY(24px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes cardReveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes heroShine{0%,45%{transform:translateX(-80%) rotate(8deg)}70%,100%{transform:translateX(80%) rotate(8deg)}}
+@keyframes productShine{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+@keyframes galleryFade{from{opacity:.25;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+@keyframes panelIn{from{transform:translateX(100%);opacity:.6}to{transform:translateX(0);opacity:1}}
+@keyframes waFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.reveal-ready{opacity:0;transform:translateY(24px)}
+.reveal-ready.revealed{opacity:1;transform:translateY(0);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+
+body.cart-open{overflow:hidden}
+.cart-trigger{display:flex;align-items:center;gap:8px}.cart-trigger b{min-width:21px;height:21px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#111;border-radius:50%;font-size:11px}
+.drawer{background:rgba(0,0,0,.68);backdrop-filter:blur(7px)}
+.panel{width:min(480px,96vw);padding:0;background:#fff;box-shadow:-18px 0 50px rgba(0,0,0,.2);display:flex;flex-direction:column}
+.cart-head{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 26px 20px;border-bottom:1px solid #eee}
+.cart-kicker{font-size:9px;letter-spacing:3px;color:#888}.cart-head h2{font:400 32px Georgia,serif;margin:6px 0 0}.cart-head .close{float:none;margin:0}
+.free-shipping{margin:16px 24px;padding:12px;background:#f5f5f3;text-align:center;font-size:12px;color:#333}
+.cart-items{padding:0 24px}.cart-product{display:flex;gap:15px;padding:18px 0;border-bottom:1px solid #e5e5e5}.cart-product img{width:88px;height:88px;object-fit:cover;background:#111}.cart-product-info{flex:1;min-width:0}.cart-product-top{display:flex;justify-content:space-between;gap:10px}.mini-label{font-size:8px;letter-spacing:2px;color:#888}.cart-product h3{font:400 18px Georgia,serif;margin:4px 0 0}.remove{border:0;background:none;color:#777;font-size:22px;cursor:pointer}.cart-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:17px}.qty{display:flex;align-items:center;border:1px solid #ddd}.qty button{width:29px;height:29px;border:0;background:#fff;cursor:pointer;font-size:17px}.qty span{width:30px;text-align:center;font-size:13px}.empty-cart{text-align:center;padding:50px 25px;color:#555}.empty-icon{font-size:40px}.empty-cart h3{font:400 25px Georgia,serif;color:#111}.empty-cart p{font-size:13px}.empty-cart button{background:#111;color:#fff;border:0;padding:12px 22px;cursor:pointer}.cart-summary{border-top:1px solid #ddd;margin-top:auto;padding:18px 24px}.cart-summary>div{display:flex;justify-content:space-between;padding:6px 0;color:#555;font-size:14px}.cart-summary .summary-total{border-top:1px solid #ddd;margin-top:8px;padding-top:15px;color:#111;font-size:19px}.checkout{margin:0 24px;padding:16px;background:#111;color:#fff;border:0;cursor:pointer;font-weight:700;font-size:15px}.secure{text-align:center;color:#888;font-size:10px;line-height:1.6;padding:12px 25px 20px;margin:0}
+@media(max-width:700px){.panel{width:100%}.cart-head{padding:22px 18px}.free-shipping,.cart-items,.cart-summary{margin-left:18px;margin-right:18px;padding-left:0;padding-right:0}.checkout{margin-left:18px;margin-right:18px}}
+</style>
+</head>
+<body>
+<div class="top"><span>משלוחים לכל הארץ 🚚</span><a href="https://wa.me/972524005315" target="_blank" rel="noopener">WhatsApp: +972 52-400-5315</a><span>קנייה מאובטחת • שירות אישי</span></div>
+
+<header><nav class="nav">
+<div class="navlinks"><a href="#home">בית</a><a href="#collection">הקולקציה</a><a href="#about">אודות</a></div>
+<div class="brand">OREL<small>JEWELRY</small></div>
+<button class="cartbtn cart-trigger" onclick="openCart()" aria-label="פתח סל קניות">🛍️ <span>הסל שלי</span><b id="count">0</b></button>
+</nav></header>
+
+<main id="home">
+<section class="hero"><h1>OREL JEWELRY</h1><div class="line"></div><p>אלגנטיות שקטה. נוכחות שאי אפשר לפספס.</p></section>
+
+<section class="wrap" id="collection">
+<div class="section-head"><div><h2>הקולקציה</h2><p>שני פריטים. סטייל אחד. ✦</p></div></div>
+<div class="products">
+
+<article class="card">
+<span class="tag">NEW • BRACELET</span>
+<div class="photo gallery" data-gallery="bracelet">
+  <img class="gallery-img active" src="assets/bracelet-1.jpg" alt="צמיד OREL JEWELRY - תמונה 1">
+  <img class="gallery-img" src="assets/bracelet-2.jpg" alt="צמיד OREL JEWELRY - תמונה 2">
+  <button class="gallery-arrow prev" onclick="changeGallery('bracelet',-1)" aria-label="התמונה הקודמת">‹</button>
+  <button class="gallery-arrow next" onclick="changeGallery('bracelet',1)" aria-label="התמונה הבאה">›</button>
+  <div class="dots"><button class="dot active" onclick="setGallery('bracelet',0)" aria-label="תמונה 1"></button><button class="dot" onclick="setGallery('bracelet',1)" aria-label="תמונה 2"></button></div>
+</div>
+<div class="info"><h3>צמיד OREL קלאסי</h3>
+<p class="desc">✨ צמיד עדין ומדויק עם ברק יוקרתי. עיצוב נקי שמתאים ליום-יום ולערב, עם נוכחות אלגנטית בלי להתאמץ. 🖤</p>
+<div class="price">₪199</div><div class="actions"><button class="primary" onclick="addToCart(1)">הוסף לסל 🛍️</button><a class="secondary product-link" href="product.html?id=bracelet">פרטים</a></div></div>
+</article>
+
+<article class="card">
+<span class="tag">OREL • 148</span>
+<div class="photo gallery" data-gallery="necklace">
+  <img class="gallery-img active" src="assets/necklace-1.jpg" alt="שרשרת OREL 148 - תמונה 1">
+  <img class="gallery-img" src="assets/necklace-2.jpg" alt="שרשרת OREL 148 - תמונה 2">
+  <button class="gallery-arrow prev" onclick="changeGallery('necklace',-1)" aria-label="התמונה הקודמת">‹</button>
+  <button class="gallery-arrow next" onclick="changeGallery('necklace',1)" aria-label="התמונה הבאה">›</button>
+  <div class="dots"><button class="dot active" onclick="setGallery('necklace',0)" aria-label="תמונה 1"></button><button class="dot" onclick="setGallery('necklace',1)" aria-label="תמונה 2"></button></div>
+</div>
+<div class="info"><h3>שרשרת OREL 148</h3>
+<p class="desc">💎 שרשרת עם תליון 148 משובץ, על בסיס נקי ומדויק. תכשיט שמוסיף אופי לכל לוק — מינימליסטי, יוקרתי ובולט. ✨</p>
+<div class="price">₪399</div><div class="actions"><button class="primary" onclick="addToCart(2)">הוסף לסל 🛍️</button><a class="secondary product-link" href="product.html?id=necklace">פרטים</a></div></div>
+</article>
+
+</div>
+
+<div class="features" id="about">
+<div class="feature"><b>🚚 משלוחים מהירים</b><span>משלוח לכל הארץ בתיאום מראש.</span></div>
+<div class="feature"><b>🖤 אריזה יוקרתית</b><span>כל הזמנה יוצאת מוכנה למתנה.</span></div>
+<div class="feature"><b>💬 שירות ב-WhatsApp</b><span>אנחנו כאן לעזור לפני ואחרי הרכישה.</span></div>
+</div>
+</section>
+</main>
+
+<footer><div class="footerbrand">OREL</div><div>JEWELRY • BLACK & WHITE • MADE TO STAND OUT</div><p>© 2026 OREL JEWELRY. כל הזכויות שמורות.</p></footer>
+<a class="wa" href="https://wa.me/972524005315?text=שלום%20OREL%20JEWELRY,%20אשמח%20לקבל%20פרטים%20על%20הקולקציה%20🖤" target="_blank" rel="noopener">💬 WhatsApp</a>
+
+<div class="drawer" id="drawer" onclick="if(event.target===this)closeCart()">
+<aside class="panel">
+  <div class="cart-head">
+    <div><span class="cart-kicker">OREL JEWELRY</span><h2>הסל שלך</h2></div>
+    <button class="close" onclick="closeCart()" aria-label="סגור">×</button>
+  </div>
+  <div class="free-shipping">🚚 משלוח לכל הארץ • שירות אישי ב-WhatsApp</div>
+  <div id="items" class="cart-items"></div>
+  <div id="empty" class="empty-cart"><div class="empty-icon">🛍️</div><h3>הסל שלך עדיין ריק</h3><p>הוסיפו תכשיט מהקולקציה והמשיכו להזמנה.</p><button onclick="closeCart();document.getElementById('collection').scrollIntoView({behavior:'smooth'})">לצפייה בקולקציה</button></div>
+  <div class="cart-summary">
+    <div><span>סכום ביניים</span><strong id="subtotal">₪0</strong></div>
+    <div><span>משלוח</span><span id="shipping">₪0</span></div>
+    <div class="summary-total"><span>סה״כ לתשלום</span><strong id="total">₪0</strong></div>
+  </div>
+  <button class="checkout" onclick="checkout()">המשך לתשלום 💳</button>
+  <p class="secure">🔒 התשלום מאובטח ומתואם מול OREL JEWELRY ב-WhatsApp.<br>לא נשמרים באתר פרטי אשראי.</p>
+</aside></div>
+
+<script>
+
+const galleryState={bracelet:0,necklace:0};
+function setGallery(name,index){
+  const box=document.querySelector(`[data-gallery="${name}"]`);
+  if(!box)return;
+  const imgs=box.querySelectorAll('.gallery-img');
+  const dots=box.querySelectorAll('.dot');
+  galleryState[name]=index;
+  imgs.forEach((img,i)=>img.classList.toggle('active',i===index));
+  dots.forEach((dot,i)=>dot.classList.toggle('active',i===index));
+}
+function changeGallery(name,step){
+  const next=(galleryState[name]+step+2)%2;
+  setGallery(name,next);
+}
+
+const products={
+1:{name:"צמיד OREL קלאסי",price:199,image:"assets/bracelet-1.jpg"},
+2:{name:"שרשרת OREL 148",price:399,image:"assets/necklace-1.jpg"}
+};
+let cart=JSON.parse(localStorage.getItem("orelCart")||"[]");
+function saveCart(){localStorage.setItem("orelCart",JSON.stringify(cart))}
+function addToCart(id){cart.push(id);saveCart();render();openCart()}
+function removeFromCart(i){cart.splice(i,1);saveCart();render()}
+function changeQty(i,delta){
+  const id=cart[i];
+  if(delta>0) cart.push(id);
+  else cart.splice(i,1);
+  saveCart();render();
+}
+function getGrouped(){
+  const groups=[];
+  cart.forEach(id=>{
+    let g=groups.find(x=>x.id===id);
+    if(!g)groups.push(g={id,qty:0});
+    g.qty++;
+  });
+  return groups;
+}
+function render(){
+  document.getElementById('count').textContent=cart.length;
+  const box=document.getElementById('items'), empty=document.getElementById('empty');
+  const groups=getGrouped();
+  empty.style.display=groups.length?'none':'block';
+  box.style.display=groups.length?'block':'none';
+  box.innerHTML=groups.map(g=>`<div class="cart-product">
+    <img src="${products[g.id].image}" alt="${products[g.id].name}">
+    <div class="cart-product-info">
+      <div class="cart-product-top"><div><span class="mini-label">OREL JEWELRY</span><h3>${products[g.id].name}</h3></div><button class="remove" onclick="removeGroup(${g.id})">×</button></div>
+      <div class="cart-bottom"><div class="qty"><button onclick="changeGroupedQty(${g.id},-1)">−</button><span>${g.qty}</span><button onclick="changeGroupedQty(${g.id},1)">+</button></div><strong>₪${products[g.id].price*g.qty}</strong></div>
+    </div>
+  </div>`).join('');
+  const subtotal=cart.reduce((s,id)=>s+products[id].price,0);
+  const shipping=subtotal===0?0:(subtotal>=300?0:25);
+  document.getElementById('subtotal').textContent='₪'+subtotal;
+  document.getElementById('shipping').textContent=shipping===0?'חינם 🎁':'₪'+shipping;
+  document.getElementById('total').textContent='₪'+(subtotal+shipping);
+}
+function removeGroup(id){cart=cart.filter(x=>x!==id);saveCart();render()}
+function changeGroupedQty(id,delta){
+  const idx=cart.indexOf(id);
+  if(delta>0)cart.push(id);else if(idx>-1)cart.splice(idx,1);
+  saveCart();render();
+}
+function openCart(){document.getElementById('drawer').classList.add('open');document.body.classList.add('cart-open');render()}
+function closeCart(){document.getElementById('drawer').classList.remove('open');document.body.classList.remove('cart-open')}
+function checkout(){
+  if(!cart.length){return}
+  const groups=getGrouped();
+  const subtotal=cart.reduce((s,id)=>s+products[id].price,0);
+  const shipping=subtotal>=300?0:25;
+  const total=subtotal+shipping;
+  const lines=groups.map(g=>`• ${products[g.id].name} × ${g.qty} — ₪${products[g.id].price*g.qty}`).join('%0A');
+  const msg=`שלום OREL JEWELRY 🖤%0Aאני מעוניין/ת לבצע הזמנה:%0A%0A${lines}%0A%0Aסכום ביניים: ₪${subtotal}%0Aמשלוח: ${shipping===0?'חינם':`₪${shipping}`}%0Aסה״כ: ₪${total}%0A%0Aאשמח להמשיך לתשלום ולתיאום משלוח.`;
+  window.open('https://wa.me/972524005315?text='+msg,'_blank');
+}
+function showProduct(id){
+alert(products[id].name+'\\n\\nלפרטים, זמינות ותיאום הזמנה — אפשר לפנות אלינו ב-WhatsApp 💬');
+}
+render();
+
+document.querySelectorAll('.gallery').forEach(box=>{
+  let startX=0;
+  box.addEventListener('touchstart',e=>{startX=e.changedTouches[0].clientX},{passive:true});
+  box.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>45) changeGallery(box.dataset.gallery,dx<0?1:-1);
+  },{passive:true});
+});
+
+
+const revealItems=document.querySelectorAll('.card,.features,.footerbrand');
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('revealed');revealObserver.unobserve(entry.target);}
+  });
+},{threshold:.12});
+revealItems.forEach(el=>{el.classList.add('reveal-ready');revealObserver.observe(el);});
+</script>
+</body>
+</html>

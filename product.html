@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>OREL JEWELRY | מוצר</title>
+<style>
+:root{--black:#050505;--white:#fff;--soft:#f6f6f4;--line:#ddd;--muted:#6d6d6d}
+*{box-sizing:border-box}body{margin:0;color:#111;background:#fff;font-family:Arial,"Helvetica Neue",sans-serif}
+a{color:inherit}.top{background:#050505;color:#fff;padding:9px 5%;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px}.top a{color:#fff;text-decoration:none}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #eee}.nav{max-width:1200px;margin:auto;padding:17px 24px;display:flex;justify-content:space-between;align-items:center}.brand{font:400 30px Georgia,serif;letter-spacing:7px;text-align:center}.brand small{display:block;font:9px Arial;letter-spacing:5px;margin-top:3px}.back{font-size:14px;text-decoration:none}.cart{background:#111;color:#fff;border:0;padding:10px 15px;cursor:pointer}
+.product{max-width:1200px;margin:auto;padding:45px 24px 75px;display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:start}.gallery{position:relative;background:#080808;overflow:hidden;aspect-ratio:1/1}.gallery img{display:none;width:100%;height:100%;object-fit:cover}.gallery img.active{display:block;animation:fade .55s ease}.arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid #fff;background:#0009;color:#fff;font-size:30px;cursor:pointer}.prev{left:15px}.next{right:15px}.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.thumb{height:100px;border:1px solid #ddd;padding:0;background:#111;cursor:pointer}.thumb.active{border:2px solid #111}.thumb img{width:100%;height:100%;object-fit:cover}
+.eyebrow{font-size:11px;letter-spacing:2px;color:#777}.title{font:400 clamp(38px,5vw,62px)/1.05 Georgia,serif;margin:12px 0}.subtitle{font-size:16px;color:#666;line-height:1.8}.price{font-size:28px;font-weight:700;margin:25px 0}.divider{height:1px;background:#ddd;margin:25px 0}.bullets{list-style:none;padding:0;line-height:2.2}.bullets li:before{content:"✦";margin-left:9px}.buy{width:100%;padding:16px;background:#050505;color:#fff;border:0;cursor:pointer;font-weight:700;font-size:16px}.wa{display:block;text-align:center;margin-top:10px;border:1px solid #111;padding:15px;text-decoration:none}.note{font-size:12px;color:#777;line-height:1.7;margin-top:18px}
+@keyframes fade{from{opacity:.2;transform:scale(1.02)}to{opacity:1;transform:scale(1)}}
+@media(max-width:800px){.product{grid-template-columns:1fr;gap:30px;padding:25px 15px 55px}.nav{padding:13px 15px}.brand{font-size:24px}.back{font-size:12px}.product .gallery{aspect-ratio:1/1}.thumb{height:85px}}
+</style>
+</head>
+<body>
+<div class="top"><span>משלוחים לכל הארץ 🚚</span><a href="https://wa.me/972524005315" target="_blank">WhatsApp: +972 52-400-5315</a><span>קנייה מאובטחת • שירות אישי</span></div>
+<header><nav class="nav">
+<a class="back" href="index.html">← חזרה לקולקציה</a>
+<div class="brand">OREL<small>JEWELRY</small></div>
+<button class="cart" onclick="window.location.href='index.html#collection'">סל קניות 🛍️</button>
+</nav></header>
+
+<main class="product">
+<section>
+<div class="gallery" id="gallery">
+<img src="assets/bracelet-1.jpg" data-product="bracelet" class="active" alt="">
+<img src="assets/bracelet-2.jpg" data-product="bracelet" alt="">
+<img src="assets/necklace-1.jpg" data-product="necklace" alt="">
+<img src="assets/necklace-2.jpg" data-product="necklace" alt="">
+<button class="arrow prev" onclick="move(-1)">‹</button><button class="arrow next" onclick="move(1)">›</button>
+</div>
+<div class="thumbs" id="thumbs"></div>
+</section>
+
+<section>
+<div class="eyebrow" id="eyebrow">OREL COLLECTION</div>
+<h1 class="title" id="title">צמיד OREL קלאסי</h1>
+<p class="subtitle" id="subtitle">✨ צמיד עדין ומדויק עם ברק יוקרתי. עיצוב נקי שמתאים ליום-יום ולערב, עם נוכחות אלגנטית בלי להתאמץ. 🖤</p>
+<div class="price" id="price">₪199</div>
+<div class="divider"></div>
+<ul class="bullets">
+<li>✨ עיצוב מינימליסטי ויוקרתי</li>
+<li>🖤 מתאים למגוון סגנונות ולשילוב עם תכשיטים נוספים</li>
+<li>🎁 אריזה מוקפדת להזמנה</li>
+<li>🚚 משלוח לכל הארץ בתיאום מראש</li>
+</ul>
+<div class="divider"></div>
+<button class="buy" onclick="order()">להזמנה דרך WhatsApp 💬</button>
+<a class="wa" href="https://wa.me/972524005315?text=שלום%20OREL%20JEWELRY,%20אשמח%20לפרטים%20על%20המוצר%20🖤" target="_blank">שאלה על המוצר? דברו איתנו ב-WhatsApp</a>
+<p class="note">לתשלום ולתיאום משלוח, הפרטים הסופיים נסגרים מול OREL JEWELRY ב-WhatsApp.</p>
+</section>
+</main>
+
+<script>
+const data={
+ bracelet:{title:"צמיד OREL קלאסי",eyebrow:"NEW • BRACELET",price:199,desc:"✨ צמיד עדין ומדויק עם ברק יוקרתי. עיצוב נקי שמתאים ליום-יום ולערב, עם נוכחות אלגנטית בלי להתאמץ. 🖤",imgs:["assets/bracelet-1.jpg","assets/bracelet-2.jpg"]},
+ necklace:{title:"שרשרת OREL 148",eyebrow:"OREL • 148",price:399,desc:"💎 שרשרת עם תליון 148 משובץ, על בסיס נקי ומדויק. תכשיט שמוסיף אופי לכל לוק — מינימליסטי, יוקרתי ובולט. ✨",imgs:["assets/necklace-1.jpg","assets/necklace-2.jpg"]}
+};
+const id=new URLSearchParams(location.search).get("id")||"bracelet";
+const p=data[id]||data.bracelet;
+let current=0;
+document.getElementById("title").textContent=p.title;
+document.getElementById("eyebrow").textContent=p.eyebrow;
+document.getElementById("price").textContent="₪"+p.price;
+document.getElementById("subtitle").textContent=p.desc;
+const gallery=document.getElementById("gallery");
+gallery.querySelectorAll("img").forEach(img=>img.remove());
+p.imgs.forEach((src,i)=>{const img=document.createElement("img");img.src=src;img.alt=p.title+" תמונה "+(i+1);if(i===0)img.className="active";gallery.insertBefore(img,gallery.querySelector(".prev"));});
+const thumbs=document.getElementById("thumbs");
+p.imgs.forEach((src,i)=>{thumbs.innerHTML+=`<button class="thumb ${i===0?"active":""}" onclick="setImage(${i})"><img src="${src}" alt=""></button>`});
+function setImage(i){current=i;gallery.querySelectorAll("img").forEach((x,n)=>x.classList.toggle("active",n===i));thumbs.querySelectorAll(".thumb").forEach((x,n)=>x.classList.toggle("active",n===i))}
+function move(step){setImage((current+step+p.imgs.length)%p.imgs.length)}
+function order(){const msg=`שלום OREL JEWELRY 🖤%0Aאני מעוניין/ת ב-${p.title}%0Aמחיר: ₪${p.price}%0Aאשמח להמשיך לתשלום ולתיאום משלוח.`;window.open("https://wa.me/972524005315?text="+msg,"_blank")}
+let sx=0;gallery.addEventListener("touchstart",e=>sx=e.changedTouches[0].clientX,{passive:true});gallery.addEventListener("touchend",e=>{let dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)move(dx<0?1:-1)},{passive:true});
+</script>
+</body></html>
